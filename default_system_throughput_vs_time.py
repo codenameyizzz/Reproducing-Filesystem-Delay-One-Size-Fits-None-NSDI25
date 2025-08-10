@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from math import floor
 
-# ================== Configuration ==================
-# Use one of the patterns below (or both):
+# configuration
+# use one of the patterns below (or both):
 CSV_PATTERN = "latency_data_*.csv"     # e.g., latency_data_fs-delay-100ms.csv
 LOG_PATTERN = "latency_x*ms.log"       # e.g., latency_x100ms.log
 
@@ -12,7 +12,6 @@ SMOOTH_WINDOW_SEC = 3                  # rolling avg (seconds)
 FAULT_START_OVERRIDE = None            # set a second value to force the vertical line position, or None
 FIGSIZE = (14, 6)
 TITLE = "Filesystem Delay Injection: Throughput vs Time"
-# ====================================================
 
 def load_from_csv(path: str):
     """CSV with columns: timestamp_ms, latency_ms, phase (baseline/fault)."""
@@ -22,7 +21,7 @@ def load_from_csv(path: str):
     t0 = df["timestamp_ms"].min()
     df["t_sec"] = (df["timestamp_ms"] - t0) // 1000
 
-    # Per-second throughput
+    # Per-second 
     per_sec = df.groupby("t_sec").size().rename("ops").reset_index()
 
     # Fill missing seconds
