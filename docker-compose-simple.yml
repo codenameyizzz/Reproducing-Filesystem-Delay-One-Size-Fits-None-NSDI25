@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  benchmark-runner:
+    image: ubuntu:20.04
+    container_name: benchmark-runner
+    command: tail -f /dev/null
+    volumes:
+      - /mnt/slowfs:/data
